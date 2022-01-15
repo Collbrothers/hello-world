@@ -1,11 +1,16 @@
-    global  _main
-    extern  _printf
+section .data
+        text db "Hello, World!", 10
 
-    section .text
-_main:
-    push    message
-    call    _printf
-    add     esp, 4
-    ret
-message:
-    db  'Hello, World', 10, 0
+section .text
+        global _start
+
+_start:
+        mov rax, 1
+        mov rdi, 2
+        mov rsi, text
+        mov rdx, 14
+        syscall
+
+        mov rax, 60
+        mov rdi, 0
+        syscall
